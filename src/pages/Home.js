@@ -1,10 +1,11 @@
 import Navbar from "../compoenents/Navbar";
+import Feed from "../compoenents/feed/Feed";
 
 const Home = () => {
   return (
     <>
       <Navbar />
-      <h1>Home</h1>
+      <Feed />
     </>
   );
 };

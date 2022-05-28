@@ -25,6 +25,9 @@ const Navbar = () => {
               letterSpacing: ".3rem",
               color: "inherit",
               textDecoration: "none",
+              "&:hover": {
+                cursor: "pointer",
+              },
             }}
           >
             PostFeed
