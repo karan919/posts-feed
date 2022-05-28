@@ -8,19 +8,20 @@ import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { useNavigate } from "react-router-dom";
 
 const Post = (props) => {
   const { article } = props;
   console.log("data", article);
+  const navigate = useNavigate();
+  const handlePostNavigation = () => {
+    navigate(`/post/${article.slug}`);
+  };
   return (
     <Card sx={{ maxWidth: 600, mb: 2 }}>
       <CardHeader
         avatar={
-          <Avatar
-            sx={{}}
-            src={article.author.image}
-            aria-label="profile-image"
-          />
+          <Avatar src={article.author.image} aria-label="profile-image" />
         }
         action={
           <IconButton aria-label="settings">
@@ -30,7 +31,7 @@ const Post = (props) => {
         title={article.author.username}
         subheader={article.updatedAt}
       />
-      <CardContent>
+      <CardContent onClick={handlePostNavigation}>
         <h3>{article.title}</h3>
         <Typography variant="body2" color="text.secondary">
           {article.description}
