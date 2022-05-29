@@ -37,7 +37,7 @@ const UserComment = () => {
       }
     );
     const data = await response.json();
-    console.log("sssd", data);
+    context.setComments((prev) => [...prev, data.comment]);
     commentRef.current.value = "";
   };
   return (
