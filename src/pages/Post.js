@@ -1,4 +1,4 @@
-import PostDetail from "../compoenents/postDetails/PostDetail";
+import PostDetail from "../compoenents/post/PostDetail";
 
 const Post = () => {
   return (

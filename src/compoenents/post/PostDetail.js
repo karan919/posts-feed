@@ -1,5 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState, useCallback } from "react";
+import Post from "./UI/Post";
+import styles from "./PostDetail.module.css";
 
 const PostDetail = () => {
   const { postId } = useParams();
@@ -19,13 +21,12 @@ const PostDetail = () => {
         throw new Error("Something went wrong!");
       }
       const data = await response.json();
-      console.log(data);
-      setPost(data);
+      setPost(data.article);
     } catch (error) {
       setError(error.message);
     }
     setIsLoading(false);
-  }, []);
+  }, [postId]);
 
   useEffect(() => {
     fetchPostHandler();
@@ -33,8 +34,8 @@ const PostDetail = () => {
 
   let content = <p>Found no post.</p>;
 
-  if (post.article) {
-    content = "kk";
+  if (post.slug) {
+    content = <Post article={post} />;
   }
 
   if (error) {
@@ -44,7 +45,11 @@ const PostDetail = () => {
   if (isLoading) {
     content = <p>Loading...</p>;
   }
-  return <h1>{content}</h1>;
+  return (
+    <div className={`${styles.center} ${styles.mt2}`}>
+      <section>{content}</section>
+    </div>
+  );
 };
 
 export default PostDetail;
