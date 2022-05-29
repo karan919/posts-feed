@@ -19,10 +19,8 @@ export const ContextProvider = (props) => {
   const [comments, setComments] = useState("");
 
   const deleteComment = (id) => {
-    console.log("commentscomments", comments);
     if (comments.length > 0) {
       const newComment = comments.filter((item) => id !== item.id);
-      console.log("newComment", newComment);
       setComments(newComment);
     }
   };

@@ -28,7 +28,6 @@ const Login = (props) => {
         password: "testz",
       },
     };
-    console.log("emailRef.current.value,", payload);
 
     const response = await fetch("https://api.realworld.io/api/users/login", {
       method: "POST",
@@ -41,7 +40,6 @@ const Login = (props) => {
     const data = await response.json();
     context.setToken(data.user.token);
     context.setIsLogin(true);
-    console.log(data.user.token);
     handleClose();
   };
   return (

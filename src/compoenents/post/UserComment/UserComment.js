@@ -14,7 +14,6 @@ const UserComment = () => {
   const context = useContext(Context);
   const handleClick = () => {
     if (!context.isLogin) {
-      console.log("context.isLogin", !context.isLogin);
       context.setIsLoginModal(true);
     }
   };

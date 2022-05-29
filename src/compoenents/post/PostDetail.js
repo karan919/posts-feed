@@ -1,40 +1,25 @@
 import { useParams } from "react-router-dom";
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 import Post from "./UI/Post";
+import useHttp from "../common/useHttp";
 import styles from "./PostDetail.module.css";
 
 const PostDetail = () => {
   const { postId } = useParams();
   const [post, setPost] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
-
-  const fetchPostHandler = useCallback(async () => {
-    setIsLoading(true);
-    setError(null);
-    try {
-      const response = await fetch(
-        `https://api.realworld.io/api/articles/${postId}`
-      );
-      if (!response.ok) {
-        throw new Error("Something went wrong!");
-      }
-      const data = await response.json();
-      setPost(data.article);
-    } catch (error) {
-      setError(error.message);
-    }
-    setIsLoading(false);
-  }, [postId]);
+  const { isLoading, error, sendRequest: sendPostsRequest } = useHttp();
 
   useEffect(() => {
-    fetchPostHandler();
-  }, [fetchPostHandler]);
+    sendPostsRequest(
+      { url: `https://api.realworld.io/api/articles/${postId}` },
+      setPost
+    );
+  }, [sendPostsRequest, postId]);
 
   let content = <p>Found no post.</p>;
 
-  if (post.slug) {
-    content = <Post article={post} />;
+  if (post.article) {
+    content = <Post article={post.article} />;
   }
 
   if (error) {

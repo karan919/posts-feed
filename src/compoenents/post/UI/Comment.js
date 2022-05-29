@@ -16,7 +16,6 @@ import { useState } from "react";
 import Context from "../../common/Context";
 
 const Comment = ({ comment, postId }) => {
-  console.log("-->", comment);
   const context = useContext(Context);
 
   const [anchorEl, setAnchorEl] = useState(false);
@@ -30,7 +29,7 @@ const Comment = ({ comment, postId }) => {
 
   const handleDelete = async () => {
     context.deleteComment(comment.id);
-    const response = await fetch(
+    await fetch(
       `https://api.realworld.io/api/articles/${postId}/comments/${comment.id}`,
       {
         method: "DELETE",
@@ -40,8 +39,6 @@ const Comment = ({ comment, postId }) => {
         },
       }
     );
-    const data = await response.json();
-    console.log("deleteee", data);
     handleClose();
   };
   return (
