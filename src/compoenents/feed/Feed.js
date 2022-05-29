@@ -25,7 +25,6 @@ const Feed = () => {
     }
     setIsLoading(false);
   }, []);
-
   useEffect(() => {
     fetchFeedHandler();
   }, [fetchFeedHandler]);
