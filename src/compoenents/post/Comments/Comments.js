@@ -13,12 +13,12 @@ const Comments = () => {
       { url: `https://api.realworld.io/api/articles/${postId}/comments` },
       setComments
     );
-  }, [sendCommentsRequest]);
+  }, [sendCommentsRequest, postId]);
 
   let content = <p>Found no comments.</p>;
 
   if (commentList.comments) {
-    content = <CommentList data={commentList} />;
+    content = <CommentList data={commentList} postId={postId} />;
   }
 
   if (error) {

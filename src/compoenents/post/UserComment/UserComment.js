@@ -19,7 +19,8 @@ const UserComment = () => {
     }
   };
 
-  const handleComment = async () => {
+  const handleComment = async (e) => {
+    e.preventDefault();
     const payload = {
       comment: {
         body: commentRef.current.value,
@@ -52,20 +53,19 @@ const UserComment = () => {
       >
         <CardHeader avatar={<AccountCircleIcon />} />
         <CardContent>
-          <TextField
-            id="standard-basic"
-            label="Comment here.."
-            variant="standard"
-            onClick={handleClick}
-            inputRef={commentRef}
-          />
-          <IconButton
-            aria-label="fingerprint"
-            color="success"
-            onClick={handleComment}
-          >
-            <SendIcon />
-          </IconButton>
+          <form onSubmit={handleComment}>
+            <TextField
+              id="standard-basic"
+              label="Comment here.."
+              variant="standard"
+              onClick={handleClick}
+              inputRef={commentRef}
+              required
+            />
+            <IconButton aria-label="fingerprint" color="success" type="submit">
+              <SendIcon />
+            </IconButton>
+          </form>
         </CardContent>
       </Card>
     </Container>
