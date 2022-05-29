@@ -10,27 +10,26 @@ import ShareIcon from "@mui/icons-material/Share";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Container } from "@mui/material";
 
-const Post = (props) => {
-  const { article } = props;
+const Comment = ({ comment }) => {
+  console.log("-->", comment);
   return (
     <Container>
       <Card sx={{ minWidth: "40vw", mb: 2 }}>
         <CardHeader
           avatar={
-            <Avatar src={article.author.image} aria-label="profile-image" />
+            <Avatar src={comment.author.image} aria-label="profile-image" />
           }
           action={
             <IconButton aria-label="settings">
               <MoreVertIcon />
             </IconButton>
           }
-          title={article.author.username}
-          subheader={article.updatedAt}
+          title={comment.author.username}
+          subheader={comment.updatedAt}
         />
         <CardContent>
-          <h3>{article.title}</h3>
           <Typography variant="body2" color="text.secondary">
-            {article.description}
+            {comment.body}
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
@@ -46,4 +45,4 @@ const Post = (props) => {
   );
 };
 
-export default Post;
+export default Comment;

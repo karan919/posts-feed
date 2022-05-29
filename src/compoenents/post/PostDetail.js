@@ -5,7 +5,6 @@ import styles from "./PostDetail.module.css";
 
 const PostDetail = () => {
   const { postId } = useParams();
-  console.log(postId);
   const [post, setPost] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);

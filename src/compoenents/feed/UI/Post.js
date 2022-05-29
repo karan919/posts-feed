@@ -12,7 +12,6 @@ import { useNavigate } from "react-router-dom";
 
 const Post = (props) => {
   const { article } = props;
-  console.log("data", article);
   const navigate = useNavigate();
   const handlePostNavigation = () => {
     navigate(`/post/${article.slug}`);
