@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import Navbar from "./compoenents/Navbar";
 import Post from "./pages/Post";
 import { ContextProvider } from "./compoenents/common/Context";
+import Login from "./compoenents/Login/Login";
 import "./App.css";
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
         <Route path="/" element={<Home />}></Route>
         <Route path="/post/:postId" element={<Post />}></Route>
       </Routes>
+      <Login />
     </ContextProvider>
   );
 }

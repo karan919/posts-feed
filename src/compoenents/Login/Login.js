@@ -22,25 +22,27 @@ const Login = (props) => {
     //     password: passwordRef.current.value,
     //   },
     // };
-    const payload ={
-        "user": {
-            "email": "testz@gmail.com",
-            "password": "testz"
-        }
-    }
+    const payload = {
+      user: {
+        email: "testz@gmail.com",
+        password: "testz",
+      },
+    };
     console.log("emailRef.current.value,", payload);
 
     const response = await fetch("https://api.realworld.io/api/users/login", {
       method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(payload),
     });
 
     const data = await response.json();
     context.setToken(data.user.token);
+    context.setIsLogin(true);
     console.log(data.user.token);
+    handleClose();
   };
   return (
     <Dialog open={context.isLoginModal} onClose={handleClose}>

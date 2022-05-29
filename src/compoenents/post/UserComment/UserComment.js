@@ -1,10 +1,45 @@
+import { useRef, useContext } from "react";
+import { useParams } from "react-router-dom";
+
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import CardHeader from "@mui/material/CardHeader";
 import CardContent from "@mui/material/CardContent";
 import { Card, Container, TextField, IconButton } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
+import Context from "../../common/Context";
 
 const UserComment = () => {
+  const { postId } = useParams();
+  const commentRef = useRef();
+  const context = useContext(Context);
+  const handleClick = () => {
+    if (!context.isLogin) {
+      console.log("context.isLogin", !context.isLogin);
+      context.setIsLoginModal(true);
+    }
+  };
+
+  const handleComment = async () => {
+    const payload = {
+      comment: {
+        body: commentRef.current.value,
+      },
+    };
+    const response = await fetch(
+      `https://api.realworld.io/api/articles/${postId}/comments`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${context.token}`,
+        },
+        body: JSON.stringify(payload),
+      }
+    );
+    const data = await response.json();
+    console.log("sssd", data);
+    commentRef.current.value = "";
+  };
   return (
     <Container sx={{ display: "flex", justifyContent: "center" }}>
       <Card
@@ -21,8 +56,14 @@ const UserComment = () => {
             id="standard-basic"
             label="Comment here.."
             variant="standard"
+            onClick={handleClick}
+            inputRef={commentRef}
           />
-          <IconButton aria-label="fingerprint" color="success">
+          <IconButton
+            aria-label="fingerprint"
+            color="success"
+            onClick={handleComment}
+          >
             <SendIcon />
           </IconButton>
         </CardContent>

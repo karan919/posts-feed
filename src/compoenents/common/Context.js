@@ -2,17 +2,23 @@ import { createContext, useState } from "react";
 
 const Context = createContext({
   isLogin: false,
-  isLoginModal: true,
-  token:"",
+  isLoginModal: false,
+  token: "",
+  comments: [],
   setIsLogin: () => {},
   setIsLoginModal: () => {},
   setToken: () => {},
+  setComments: () => {},
+  deleteComment: () => {},
 });
 
 export const ContextProvider = (props) => {
   const [isLogin, setIsLogin] = useState(false);
-  const [isLoginModal, setIsLoginModal] = useState(true);
+  const [isLoginModal, setIsLoginModal] = useState(false);
   const [token, setToken] = useState("");
+  const [comments, setComments] = useState("");
+
+  const deleteComment = () => {};
 
   return (
     <Context.Provider
@@ -20,9 +26,12 @@ export const ContextProvider = (props) => {
         isLogin,
         isLoginModal,
         token,
+        comments,
         setIsLogin,
         setIsLoginModal,
         setToken,
+        setComments,
+        deleteComment,
       }}
     >
       {props.children}
