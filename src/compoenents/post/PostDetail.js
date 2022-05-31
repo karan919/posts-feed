@@ -2,7 +2,6 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Post from "./UI/Post";
 import useHttp from "../common/useHttp";
-import styles from "./PostDetail.module.css";
 
 const PostDetail = () => {
   const { postId } = useParams();
@@ -29,11 +28,7 @@ const PostDetail = () => {
   if (isLoading) {
     content = <p>Loading...</p>;
   }
-  return (
-    <div className={`${styles.center} ${styles.mt2}`}>
-      <section>{content}</section>
-    </div>
-  );
+  return <>{content}</>;
 };
 
 export default PostDetail;

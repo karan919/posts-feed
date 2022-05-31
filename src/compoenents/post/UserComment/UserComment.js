@@ -1,10 +1,16 @@
 import { useRef, useContext } from "react";
 import { useParams } from "react-router-dom";
 
+import {
+  Card,
+  Container,
+  TextField,
+  IconButton,
+  Grid,
+  CardHeader,
+  CardContent,
+} from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import CardHeader from "@mui/material/CardHeader";
-import CardContent from "@mui/material/CardContent";
-import { Card, Container, TextField, IconButton } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import Context from "../../common/Context";
 
@@ -41,31 +47,45 @@ const UserComment = () => {
     commentRef.current.value = "";
   };
   return (
-    <Container sx={{ display: "flex", justifyContent: "center" }}>
+    <Container
+      sx={{ display: "flex", justifyContent: "center", maxWidth: 600 }}
+    >
       <Card
         sx={{
-          maxWidth: 600,
+          width: 600,
           mb: 2,
-          display: "flex",
-          justifyContent: "center",
         }}
       >
-        <CardHeader avatar={<AccountCircleIcon />} />
-        <CardContent>
-          <form onSubmit={handleComment}>
-            <TextField
-              id="standard-basic"
-              label="Comment here.."
-              variant="standard"
-              onClick={handleClick}
-              inputRef={commentRef}
-              required
-            />
-            <IconButton aria-label="fingerprint" color="success" type="submit">
-              <SendIcon />
-            </IconButton>
-          </form>
-        </CardContent>
+        <Grid container spacing={3} sx={{ display: "flex" }}>
+          <Grid item lg={1}>
+            <CardHeader avatar={<AccountCircleIcon fontSize="large" />} />
+          </Grid>
+          <Grid item lg={11}>
+            <CardContent>
+              <form
+                onSubmit={handleComment}
+                style={{ display: "flex", alignItems: "flex-end" }}
+              >
+                <TextField
+                  id="standard-basic"
+                  label="Comment"
+                  variant="standard"
+                  onClick={handleClick}
+                  inputRef={commentRef}
+                  required
+                  sx={{ width: "100%" }}
+                />
+                <IconButton
+                  aria-label="fingerprint"
+                  color="success"
+                  type="submit"
+                >
+                  <SendIcon />
+                </IconButton>
+              </form>
+            </CardContent>
+          </Grid>
+        </Grid>
       </Card>
     </Container>
   );

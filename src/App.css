@@ -2,3 +2,13 @@
     display: flex;
     justify-content: center;
 }
+
+.post{
+     display: flex;
+     justify-content: center;
+     flex-wrap: wrap;
+}
+
+.mt2{
+    margin-top: 2rem;
+}

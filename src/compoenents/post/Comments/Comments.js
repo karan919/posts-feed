@@ -28,11 +28,7 @@ const Comments = () => {
   if (isLoading) {
     content = <p>Loading...</p>;
   }
-  return (
-    <div className="center">
-      <section>{content}</section>
-    </div>
-  );
+  return <section>{content}</section>;
 };
 
 export default Comments;

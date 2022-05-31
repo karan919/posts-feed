@@ -4,11 +4,11 @@ import UserComment from "../compoenents/post/UserComment/UserComment";
 
 const Post = () => {
   return (
-    <>
+    <div className="post">
       <PostDetail />
       <UserComment />
       <Comments />
-    </>
+    </div>
   );
 };
 

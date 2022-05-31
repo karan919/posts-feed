@@ -1,18 +1,18 @@
-import { useContext } from "react";
-import Card from "@mui/material/Card";
-import CardHeader from "@mui/material/CardHeader";
-import CardContent from "@mui/material/CardContent";
-import CardActions from "@mui/material/CardActions";
-import Avatar from "@mui/material/Avatar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
+import { useContext, useState } from "react";
+import {
+  Card,
+  CardHeader,
+  CardContent,
+  CardActions,
+  Avatar,
+  IconButton,
+  Typography,
+  Container,
+  Menu,
+  MenuItem,
+} from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import ShareIcon from "@mui/icons-material/Share";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { Container } from "@mui/material";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import { useState } from "react";
 import Context from "../../common/Context";
 
 const Comment = ({ comment, postId }) => {
@@ -43,7 +43,7 @@ const Comment = ({ comment, postId }) => {
   };
   return (
     <Container>
-      <Card sx={{ minWidth: "40vw", mb: 2 }}>
+      <Card sx={{ maxWidth: 600, mb: 2 }}>
         <CardHeader
           avatar={
             <Avatar src={comment.author.image} aria-label="profile-image" />
@@ -69,17 +69,14 @@ const Comment = ({ comment, postId }) => {
           title={comment.author.username}
           subheader={comment.updatedAt}
         />
-        <CardContent>
+        <CardContent sx={{ mx: 5 }}>
           <Typography variant="body2" color="text.secondary">
             {comment.body}
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
-          <IconButton aria-label="add to favorites">
+          <IconButton aria-label="add to favorites" sx={{ ml: 5 }}>
             <FavoriteIcon />
-          </IconButton>
-          <IconButton aria-label="share">
-            <ShareIcon />
           </IconButton>
         </CardActions>
       </Card>

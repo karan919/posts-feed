@@ -1,10 +1,14 @@
-import Card from "@mui/material/Card";
-import CardHeader from "@mui/material/CardHeader";
-import CardContent from "@mui/material/CardContent";
-import CardActions from "@mui/material/CardActions";
-import Avatar from "@mui/material/Avatar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
+import {
+  Card,
+  CardHeader,
+  CardContent,
+  CardActions,
+  Avatar,
+  IconButton,
+  Typography,
+  Box,
+  Chip,
+} from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
@@ -12,6 +16,7 @@ import { useNavigate } from "react-router-dom";
 
 const Post = (props) => {
   const { article } = props;
+  console.log("article", article);
   const navigate = useNavigate();
   const handlePostNavigation = () => {
     navigate(`/post/${article.slug}`);
@@ -30,15 +35,32 @@ const Post = (props) => {
         title={article.author.username}
         subheader={article.updatedAt}
       />
-      <CardContent onClick={handlePostNavigation}>
+      <CardContent
+        onClick={handlePostNavigation}
+        sx={{
+          paddingTop: 0,
+          "&:hover": {
+            cursor: "pointer",
+            backgroundColor: "#00000005",
+          },
+        }}
+      >
         <h3>{article.title}</h3>
         <Typography variant="body2" color="text.secondary">
           {article.description}
         </Typography>
+        <Box sx={{ mt: 2 }}>
+          {article.tagList.map((chip, index) => (
+            <Chip key={`${article.id}-${index}}`} label={chip} sx={{ mr: 1 }} />
+          ))}
+        </Box>
       </CardContent>
       <CardActions disableSpacing>
+        <Typography sx={{ fontSize: "1rem", marginLeft: "5px" }}>
+          {article.favoritesCount}
+        </Typography>
         <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
+          <FavoriteIcon sx={{ color: "red" }} />
         </IconButton>
         <IconButton aria-label="share">
           <ShareIcon />

@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import PostList from "./PostList";
 import useHttp from "../common/useHttp";
-import styles from "./Feed.module.css";
 
 const Feed = () => {
   const [posts, setPosts] = useState([]);
@@ -29,7 +28,7 @@ const Feed = () => {
   }
   return (
     <>
-      <div className={`${styles.center} ${styles.mt2}`}>
+      <div className="center mt2">
         <section>{content}</section>
       </div>
     </>
