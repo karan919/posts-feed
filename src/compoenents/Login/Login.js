@@ -16,16 +16,10 @@ const Login = (props) => {
   };
 
   const handleSubmit = async () => {
-    // const payload = {
-    //   user: {
-    //     email: emailRef.current.value,
-    //     password: passwordRef.current.value,
-    //   },
-    // };
     const payload = {
       user: {
-        email: "testz@gmail.com",
-        password: "testz",
+        email: emailRef.current.value,
+        password: passwordRef.current.value,
       },
     };
 
