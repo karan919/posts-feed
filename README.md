@@ -1,6 +1,10 @@
-# Getting Started with Create React App
+# PostFeed Application with API's Implementation
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Login Credential
+Username: testz@gmail.com
+Password: testz
+
+Implemented API's from api.realworld.io.
 
 ## Available Scripts
 
