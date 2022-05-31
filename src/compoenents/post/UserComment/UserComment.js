@@ -43,7 +43,7 @@ const UserComment = () => {
       }
     );
     const data = await response.json();
-    context.setComments((prev) => [...prev, data.comment]);
+    context.setComments((prev) => [data.comment, ...prev]);
     commentRef.current.value = "";
   };
   return (
